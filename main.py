@@ -73,19 +73,15 @@ async def process_ppt(
     folder_id: str = Form(...),
     source_type: str = Form("file")
 ):
-    print("DEBUG: Entering process_ppt endpoint")
     try:
         # Read the file content
         file_content = await file.read()
-        print("DEBUG: Successfully read PPT file content")
         
         # Extract text from PowerPoint
         text_content = extract_text_from_pptx(file_content)
-        print("DEBUG: Successfully extracted text from PPT")
         
         # Generate summary
         summary = generate_summary(text_content)
-        print("DEBUG: Successfully generated summary")
         
         # Prepare note data
         note_data = {
@@ -117,9 +113,8 @@ async def process_ppt(
 
 @app.post("/process-note")
 async def process_note(payload: NoteRequest):
-    print("DEBUG: Entering process_note endpoint")
     try:
-        print("DEBUG: Processing note with content:", payload.content[:100] + "..." if len(payload.content) > 100 else payload.content)
+        print("Processing note with content:", payload.content)
         summary = generate_summary(payload.content)
         
         # Validate the summary response
@@ -167,11 +162,9 @@ async def process_pdf(
     folder_id: str = Form(...),
     source_type: str = Form("file")
 ):
-    print("DEBUG: Entering process_pdf endpoint")
     try:
         # Read the file content
-        file_content = await content.read()  # Fixed variable name mismatch
-        print("DEBUG: Successfully read PDF file content")
+        file_content = await content.read()
         
         # Extract text from PDF
         text_content = extract_text_from_pdf(file_content)
