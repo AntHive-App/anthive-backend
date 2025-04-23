@@ -14,7 +14,7 @@ You must return ONLY a valid JSON object with this exact structure:
     "summary": [
      "A single, 20-word sentence summarizing the content",
     
-    "A comprehensive summary of the content carefully crafted to be concise and informative"
+    "A comprehensive summary of the content carefully crafted to be informative"
 
     ]
 }
